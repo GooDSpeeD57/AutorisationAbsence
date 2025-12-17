@@ -12,7 +12,7 @@
     <img src="./images/logo.png" width="206" alt="logoAfpa">
     <h1>Autorisation d'Absence</h1>
     <hr>
-    <form action =# method="get">
+    <form action =# method="post">
         <fieldset>
             <div>
                 <label>Nom :
@@ -62,17 +62,17 @@
 
             <div id="jour">
                 <label>Date :
-                <input type="date" name="date_jour">
+                <input type="date" name="date_jour" required>
                 </label>
             </div>
 
             <div id="periode" style="display:none;">
                 <label>Date de début :<br>
-                <input type="date" name="date_debut"><br><br>
+                <input type="date" name="date_debut" required><br><br>
                 </label>
 
                 <label>Date de fin :<br>
-                <input type="date" name="date_fin">
+                <input type="date" name="date_fin" required>
                 </label>
             </div>
 
@@ -92,7 +92,15 @@
             <h2>Cachet et signature de l'entreprise ou de</h2>
         </div>
         <div class="signature-subheader">
-            <p>Merci d'apposer votre cachet pour justifier de l'absence de la formation de M</p>
+            <p>Merci d'apposer votre cachet pour justifier de l'absence de la formation de </p>
+            <table>
+                <tr>
+                    <td>Nom :</td>
+                    <td>____________________</td>
+                    <td>Prénom :</td>
+                    <td>____________________</td>
+                </tr>
+            </table>
         </div>
         <div class="fixed-part">
             <div class="signatures">
