@@ -1,0 +1,63 @@
+{
+  "Motif de l'absence": {
+    "Code 01 : Retard absences non rémunérées": {
+      "elements" : ["Retard"]
+    },
+    "Code 04 : Grève Afpa": {
+      "elements" : ["Grève Afpa"]
+    },
+    "Code 05 : Maladie": {
+      "elements" : ["Maladie"]
+    },
+    "Code 06 : Absence Légale": {
+      "elements": [
+        "Naissance ou adoption (3 jours)",
+        "Mariage (4 jours)",
+        "Mariage d’un enfant (1 jour)",
+        "Décès du conjoint ou du partenaire lié par un pacte civil de solidarité ou d’un enfant (2 jours)",
+        "Décès du père, de la mère, du beau-père, de la belle-mère, d’un frère ou d’une sœur (1 jour)",
+        "Visite médicale obligatoire de la grossesse",
+        "Stagiaire élu membre du CA d’une caisse de sécurité sociale"
+      ]
+    },
+    "Code 20 : Accident": {
+      "elements" : ["Accident travail sans arrêt"]
+    },
+    "Code 21 : Accident": {
+      "elements" : ["Accident travail avec arrêt"]
+    },
+    "Code 30 : Accident": {
+      "elements" : ["Accident trajet sans arrêt"]
+    },
+    "Code 31 : Accident": {
+      "elements" : ["Accident trajet avec arrêt"]
+    },
+    "Code 40 : Accident": {
+      "elements" : ["Accident travail hors Afpa sans arrêt"]
+    },
+    "Code 41 : Accident": {
+      "elements" : ["Accident travail hors Afpa avec arrêt"]
+    },
+
+    "Code 98 : Absence autorisée non rémunérée": {
+      "elements": [
+        "Recherche PE",
+        "Recherche d’un emploi",
+        "Visite d’un salon",
+        "Enquête en entreprise",
+        "Visite d’un autre centre",
+        "RDV psychologue du travail",
+        "Rendez-vous POLE EMPLOI",
+        "Absence pour fêtes religieuses hors jours fériés légaux",
+        "Grève des transports",
+        "Intempéries",
+        "RDV avec le conseiller militaire",
+        "RDV avec le juge, Convocation au tribunal ou commissariat",
+        "Recherche de logement, RDV organismes divers"
+      ]
+    },
+    "Code 99": {
+      "description": "Absence non autorisée non rémunérée"
+    }
+  }
+}

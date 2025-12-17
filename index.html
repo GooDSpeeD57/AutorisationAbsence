@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorisation d'Absence</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+<header>
+    <img src="./images/logo.png" width="206" alt="logoAfpa">
+    <h1>Autorisation d'Absence</h1>
+    <hr>
+    <form action =# method="get">
+        <fieldset>
+            <div>
+                <label>Nom :
+                    <input type="text" name="nom" required>
+                </label>
+            </div>
+
+            <div>
+                <label>Prénom :
+                    <input type="text" name="prenom" required>
+                </label>
+            </div>
+
+            <div>
+                <label>Email :
+                    <input type="email" name="email" required>
+                </label>
+            </div>
+            <div>
+                <label>Telephone :
+                <input type="tel" name="tel" id="telephone" required>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Formation :
+                    <select name="formation_suivie" required>
+                        <option value="CDA">Concepteur Développeur d'Application</option>
+                        <option value="DWWM">Développeur Web et Web Mobile</option>
+                        <option value="AIS">Administrateur d'Infrastructures Sécurisées</option>
+                        <option value="Autre">Autre Formation</option>
+                    </select>
+                </label>
+            </div>
+
+            <p id="typeDateLabel">Choisissez votre jour ou periode :</p>
+
+            <label>
+                <input type="radio" name="type_date" value="jour" checked>
+                Un jour
+            </label>
+
+            <label>
+                <input type="radio" name="type_date" value="periode">
+                Une période
+            </label>
+
+            <div id="jour">
+                <label>Date :
+                <input type="date" name="date_jour">
+                </label>
+            </div>
+
+            <div id="periode" style="display:none;">
+                <label>Date de début :<br>
+                <input type="date" name="date_debut"><br><br>
+                </label>
+
+                <label>Date de fin :<br>
+                <input type="date" name="date_fin">
+                </label>
+            </div>
+
+            <div id="maDiv"></div>
+
+            <div class="form-buttons">
+                <button type="submit" id="btnEnvoyer">Envoyer</button>
+                <button type="reset" id="btnEffacer">Effacer</button>
+            </div>
+        </fieldset>
+    </form>
+</header>
+
+<main>
+    <div class="signature-container hidden">
+        <div class="signature-header">
+            <h2>Cachet et signature de l'entreprise ou de</h2>
+        </div>
+        <div class="signature-subheader">
+            <p>Merci d'apposer votre cachet pour justifier de l'absence de la formation de M</p>
+        </div>
+        <div class="fixed-part">
+            <div class="signatures">
+                <div class="signature-box">
+                    Date et signature du stagiaire
+                </div>
+                <div class="signature-box">
+                    Date et signature du formateur
+                </div>
+            </div>
+            <div class="decision-section">
+                <div class="decision-box">
+                    Avis du MF pour décision du Directeur
+                </div>
+                <div class="decision-box">
+                    Décision du Directeur
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
