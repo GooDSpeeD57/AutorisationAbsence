@@ -16,9 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if (selected.value === 'jour') {
                 jour.style.display = 'block';
                 periode.style.display = 'none';
+                form.date_jour.required = true;
+                form.date_debut.required = false;
+                form.date_fin.required = false;
             } else {
                 jour.style.display = 'none';
                 periode.style.display = 'block';
+                form.date_jour.required = false;
+                form.date_debut.required = true;
+                form.date_fin.required = true;
             }
         }
     }
