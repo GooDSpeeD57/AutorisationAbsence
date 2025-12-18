@@ -6,18 +6,22 @@
 }
 
 body {
-    background: #f4f6f8;
     color: #333;
-    padding: 30px;
+    padding: 20px;
+    background-image: url('./Images/pexels-thisisengineering-3861958.jpg');
+    background-size: cover  ;
+    background-position: right top;
+    background-attachment: fixed;
 }
 
 header {
     max-width: 600px;
     margin: auto;
-    background: #ffffff;
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
 }
 
 header h1 {
@@ -47,7 +51,7 @@ fieldset {
 }
 
 form > fieldset > div {
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
 label {
@@ -89,16 +93,14 @@ p {
 #jour,
 #periode {
     margin-top: 10px;
-    padding: 15px;
-    background: #f9fafb;
-    border-radius: 6px;
-    border: 1px solid #e1e4e8;
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background: #3498db;
+    background: #75da23;
+
+
     color: white;
     border: none;
     border-radius: 6px;
@@ -109,7 +111,7 @@ button {
 }
 
 button:hover {
-    background: #2980b9;
+    background: #b9ad29;
 }
 
 button:active {
@@ -129,9 +131,10 @@ button:active {
 
 .signature-container {
     max-width: 600px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
+    margin: 10px auto;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
@@ -287,4 +290,21 @@ textarea:disabled {
 
 input[type="radio"]:disabled {
     accent-color: #3498db;
+}
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.left-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.right-column {
+    max-width: 300px;
 }

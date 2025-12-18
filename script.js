@@ -99,12 +99,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function keepOnlySelectedCodeBlock() {
-        const blocks = document.querySelectorAll('.code-block');
+        const selected = document.querySelector('input[name="motif_absence"]:checked');
+        if (!selected) return;
 
+        const blocks = document.querySelectorAll('.code-block');
         blocks.forEach(block => {
-            const checked = block.querySelector('input[name="motif_absence"]:checked');
-            if (!checked) {
+            const inputs = block.querySelectorAll('input[name="motif_absence"]');
+            if (!Array.from(inputs).includes(selected)) {
                 block.style.display = 'none';
+            } else {
+                // On cache tous les autres labels sauf celui sélectionné
+                inputs.forEach(input => {
+                    if (input !== selected) {
+                        input.closest('label').style.display = 'none';
+                    }
+                });
             }
         });
 
@@ -160,6 +169,38 @@ document.addEventListener("DOMContentLoaded", () => {
         btnEffacer.classList.add('hidden');
 
         signatureContainer.classList.remove('hidden');
+        btnPrint.classList.remove('hidden');
+        btnMail.classList.remove('hidden');
+    });
+    btnPrint.addEventListener('click', () => {
+        window.print();
     });
 
+    const btnMail = document.getElementById('btnMail');
+
+    btnMail.addEventListener('click', () => {
+
+        const motif = document.querySelector('input[name="motif_absence"]:checked');
+
+        let message = `
+Autorisation d'absence
+
+Nom : ${form.nom.value}
+Prénom : ${form.prenom.value}
+Email : ${form.email.value}
+Téléphone : ${form.tel.value}
+Formation : ${form.formation_suivie.value}
+Motif : ${motif ? motif.value : ''}
+
+`;
+
+        if (form.date_jour.value) {
+            message += `Date : ${form.date_jour.value}\n`;
+        } else {
+            message += `Du : ${form.date_debut.value}\nAu : ${form.date_fin.value}\n`;
+        }
+
+        const mailto = `mailto:absence@afpa.fr?subject=Autorisation d'absence&body=${encodeURIComponent(message)}`;
+        window.location.href = mailto;
+    });
 });
