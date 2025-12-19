@@ -197,13 +197,13 @@ Email : ${form.email.value}
 Téléphone : ${form.tel.value}
 Formation : ${form.formation_suivie.value}
 Motif : ${motif ? motif.value : ''}
-
 `;
 
         if (form.date_jour.value) {
             message += `Date : ${form.date_jour.value}\n`;
+            message += `Heure : ${form.hstart_jour.value} - ${form.hend_jour.value}\n`;
         } else {
-            message += `Du : ${form.date_debut.value}\nAu : ${form.date_fin.value}\n`;
+            message += `Du : ${form.date_debut.value} Au : ${form.date_fin.value}\n`;
         }
 
         const mailto = `mailto:absence@afpa.fr?subject=Autorisation d'absence&body=${encodeURIComponent(message)}`;
