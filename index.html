@@ -17,19 +17,19 @@
         <fieldset>
             <div class="contact-row">
                 <div class="left-column">
-                    <label>Nom :
+                    <label>Nom
                         <input type="text" name="nom" required>
                     </label>
-                    <label>Email :
+                    <label>Email
                         <input type="email" name="email" required>
                     </label>
                 </div>
 
                 <div class="right-column">
-                    <label>Prénom :
+                    <label>Prénom
                         <input type="text" name="prenom" required>
                     </label>
-                    <label>Telephone :
+                    <label>Telephone
                         <input type="tel" name="tel" id="telephone" required>
                     </label>
                 </div>
@@ -59,10 +59,11 @@
             </label>
 
             <div id="jour">
-                <label>Date :
-                <input type="date" name="date_jour" required>
-                    <input type="time" name="hstart_jour" required>
-                    <input type="time" name="hend_jour" required>
+                <label>Date
+                <input type="date" name="date_jour" required></label>
+                <label>Heure
+                <input type="time" name="hstart_jour" required>
+                <input type="time" name="hend_jour" required>
                 </label>
             </div>
 
@@ -75,14 +76,12 @@
                 <input type="date" name="date_fin" required>
                 </label>
             </div>
-
+<hr>
             <div id="maDiv"></div>
 
             <div class="form-buttons">
                 <button type="submit" id="btnEnvoyer">Envoyer</button>
                 <button type="reset" id="btnEffacer">Effacer</button>
-                <button id="btnPrint" class="hidden">Imprimer</button>
-                <button id="btnMail" class="hidden">Email</button>
             </div>
         </fieldset>
     </form>
@@ -120,6 +119,10 @@
                 <div class="decision-box">
                     Décision du Directeur
                 </div>
+            </div>
+            <div class="button-row">
+            <button id="btnPrint" type="button" class="hidden">Imprimer</button>
+            <button id="btnMail" type="button" class="hidden">Email</button>
             </div>
         </div>
     </div>

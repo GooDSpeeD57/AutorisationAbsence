@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const maDiv = document.getElementById("maDiv");
     const btnEnvoyer = document.getElementById('btnEnvoyer');
     const btnEffacer = document.getElementById('btnEffacer');
-
     const radios = document.querySelectorAll('input[name="type_date"]');
     const jour = document.getElementById('jour');
     const periode = document.getElementById('periode');
@@ -16,18 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
             if (selected.value === 'jour') {
                 jour.style.display = 'block';
                 periode.style.display = 'none';
+
                 form.date_jour.required = true;
+                form.hstart_jour.required = true;
+                form.hend_jour.required = true;
+
                 form.date_debut.required = false;
                 form.date_fin.required = false;
             } else {
                 jour.style.display = 'none';
                 periode.style.display = 'block';
+
                 form.date_jour.required = false;
+                form.hstart_jour.required = false;
+                form.hend_jour.required = false;
+
                 form.date_debut.required = true;
                 form.date_fin.required = true;
             }
         }
     }
+
 
     updateDateBlocks();
 
@@ -138,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             periode.style.display = 'none';
         } else {
             jour.style.display = 'none';
-            periode.style.display = 'block';
+            periode.style.display = 'grid';
         }
     }
 
@@ -175,8 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnPrint.addEventListener('click', () => {
         window.print();
     });
-
-    const btnMail = document.getElementById('btnMail');
 
     btnMail.addEventListener('click', () => {
 
