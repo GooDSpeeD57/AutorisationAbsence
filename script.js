@@ -5,47 +5,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const maDiv = document.getElementById("maDiv");
     const btnEnvoyer = document.getElementById('btnEnvoyer');
     const btnEffacer = document.getElementById('btnEffacer');
+    const btnPrint = document.getElementById('btnPrint');
+    const btnMail = document.getElementById('btnMail');
     const radios = document.querySelectorAll('input[name="type_date"]');
     const jour = document.getElementById('jour');
     const periode = document.getElementById('periode');
+    const typeDateLabel = document.getElementById('typeDateLabel');
+    const ABSENCE_EMAIL = 'absence@afpa.fr';
+
+    function toggleVisibility(element, show, displayType = "block") {
+        element.style.display = show ? displayType : "none";
+    }
 
     function updateDateBlocks() {
         const selected = document.querySelector('input[name="type_date"]:checked');
-        if (selected) {
-            if (selected.value === 'jour') {
-                jour.style.display = 'block';
-                periode.style.display = 'none';
+        if (!selected) return;
 
-                form.date_jour.required = true;
-                form.hstart_jour.required = true;
-                form.hend_jour.required = true;
-
-                form.date_debut.required = false;
-                form.date_fin.required = false;
-            } else {
-                jour.style.display = 'none';
-                periode.style.display = 'block';
-
-                form.date_jour.required = false;
-                form.hstart_jour.required = false;
-                form.hend_jour.required = false;
-
-                form.date_debut.required = true;
-                form.date_fin.required = true;
-            }
+        if (selected.value === 'jour') {
+            toggleVisibility(jour, true, "block");
+            toggleVisibility(periode, false);
+            form.date_jour.required = true;
+            form.hstart_jour.required = true;
+            form.hend_jour.required = true;
+            form.date_debut.required = false;
+            form.date_fin.required = false;
+        } else {
+            toggleVisibility(jour, false);
+            toggleVisibility(periode, true, "grid");
+            form.date_jour.required = false;
+            form.hstart_jour.required = false;
+            form.hend_jour.required = false;
+            form.date_debut.required = true;
+            form.date_fin.required = true;
         }
     }
 
-
     updateDateBlocks();
-
-    radios.forEach(radio => {
-        radio.addEventListener('change', updateDateBlocks);
-    });
+    radios.forEach(radio => radio.addEventListener('change', updateDateBlocks));
 
     fetch('test.json')
         .then(response => {
-            if (!response.ok) throw new Error("Impossible de charger le JSON");
+            if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
             return response.json();
         })
         .then(data => {
@@ -76,17 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (item.elements) {
                     item.elements.forEach(el => {
                         const label = document.createElement("label");
-                        label.style.display = "block";
-
                         const input = document.createElement("input");
                         input.type = "radio";
                         input.name = "motif_absence";
                         input.value = el;
                         input.dataset.code = code;
-
                         label.appendChild(input);
                         label.append(" " + el);
-
                         block.appendChild(label);
                     });
                 }
@@ -95,15 +91,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(err => {
-            maDiv.textContent = "Erreur : " + err;
+            maDiv.textContent = '';
+            const errorMsg = document.createElement('p');
+            errorMsg.className = 'error';
+            errorMsg.textContent = `Erreur : ${err.message}`;
+            maDiv.appendChild(errorMsg);
         });
 
-    signatureContainer.classList.add('hidden');
+    toggleVisibility(signatureContainer, false);
 
     function lockForm(form) {
-        form.querySelectorAll('input, select, textarea').forEach(el => {
-            el.disabled = true;
-        });
+        form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
     }
 
     function keepOnlySelectedCodeBlock() {
@@ -114,40 +112,25 @@ document.addEventListener("DOMContentLoaded", () => {
         blocks.forEach(block => {
             const inputs = block.querySelectorAll('input[name="motif_absence"]');
             if (!Array.from(inputs).includes(selected)) {
-                block.style.display = 'none';
+                toggleVisibility(block, false);
             } else {
-                // On cache tous les autres labels sauf celui sélectionné
                 inputs.forEach(input => {
-                    if (input !== selected) {
-                        input.closest('label').style.display = 'none';
-                    }
+                    if (input !== selected) toggleVisibility(input.closest('label'), false);
                 });
             }
         });
 
-        document.querySelectorAll('#maDiv hr').forEach(hr => {
-            hr.style.display = 'none';
-        });
+        document.querySelectorAll('#maDiv hr').forEach(hr => toggleVisibility(hr, false));
     }
 
     function keepOnlySelectedDateType() {
         const selected = document.querySelector('input[name="type_date"]:checked');
+        if (!selected) return;
 
-        // cacher labels radio
-        radios.forEach(radio => {
-            const label = radio.closest('label');
-            if (label) label.style.display = 'none';
-        });
-
-        document.getElementById('typeDateLabel').style.display = 'none';
-
-        if (selected.value === 'jour') {
-            jour.style.display = 'block';
-            periode.style.display = 'none';
-        } else {
-            jour.style.display = 'none';
-            periode.style.display = 'grid';
-        }
+        radios.forEach(radio => toggleVisibility(radio.closest('label'), false));
+        toggleVisibility(typeDateLabel, false);
+        toggleVisibility(jour, selected.value === 'jour');
+        toggleVisibility(periode, selected.value === 'periode');
     }
 
     form.addEventListener('submit', e => {
@@ -168,24 +151,29 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Veuillez sélectionner les dates de début et fin.");
             return;
         }
+        if (selectedDateType === 'periode') {
+            const debut = new Date(form.date_debut.value);
+            const fin = new Date(form.date_fin.value);
+            if (fin < debut) {
+                alert("La date de fin doit être après la date de début");
+                return;
+            }
+        }
 
         lockForm(form);
         keepOnlySelectedCodeBlock();
         keepOnlySelectedDateType();
 
-        btnEnvoyer.classList.add('hidden');
-        btnEffacer.classList.add('hidden');
+        toggleVisibility(btnEnvoyer, false);
+        toggleVisibility(btnEffacer, false);
+        toggleVisibility(signatureContainer, true);
+        toggleVisibility(btnPrint, true);
+        toggleVisibility(btnMail, true);
+    });
 
-        signatureContainer.classList.remove('hidden');
-        btnPrint.classList.remove('hidden');
-        btnMail.classList.remove('hidden');
-    });
-    btnPrint.addEventListener('click', () => {
-        window.print();
-    });
+    btnPrint.addEventListener('click', () => window.print());
 
     btnMail.addEventListener('click', () => {
-
         const motif = document.querySelector('input[name="motif_absence"]:checked');
 
         let message = `
@@ -206,7 +194,7 @@ Motif : ${motif ? motif.value : ''}
             message += `Du : ${form.date_debut.value} Au : ${form.date_fin.value}\n`;
         }
 
-        const mailto = `mailto:absence@afpa.fr?subject=Autorisation d'absence&body=${encodeURIComponent(message)}`;
-        window.location.href = mailto;
+        window.location.href = `mailto:${ABSENCE_EMAIL}?subject=Autorisation d'absence&body=${encodeURIComponent(message)}`;
     });
+
 });

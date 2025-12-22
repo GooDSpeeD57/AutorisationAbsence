@@ -57,7 +57,7 @@
       ]
     },
     "Code 99": {
-      "description": "Absence non autorisée non rémunérée"
+      "elements": ["Absence non autorisée non rémunérée"]
     }
   }
 }

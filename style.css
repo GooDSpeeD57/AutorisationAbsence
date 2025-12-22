@@ -9,7 +9,7 @@ body {
     color: #333;
     padding: 20px;
     background-image: url('./Images/pexels-thisisengineering-3861958.jpg');
-    background-size: cover  ;
+    background-size: cover;
     background-position: right top;
     background-attachment: fixed;
 }
@@ -22,7 +22,6 @@ header {
     border-radius: 10px;
     border: 5px solid rgba(117, 218, 35, 0.75);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-
 }
 
 header h1 {
@@ -62,10 +61,14 @@ label {
     color: #444;
 }
 
+#jour {
+    display: block;
+}
+
 #periode {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+    display: none;
 }
 
 #periode label {
@@ -108,10 +111,7 @@ p {
 }
 
 button {
-    width: 100%;
     padding: 12px;
-    background: #75da23;
-    color: white;
     border: none;
     border-radius: 6px;
     font-size: 16px;
@@ -120,30 +120,38 @@ button {
     transition: background 0.3s, transform 0.1s;
 }
 
-button:hover {
+.form-buttons button,
+.button-row button {
+    background: #75da23;
+    color: white;
+}
+
+.form-buttons button:hover,
+.button-row button:hover {
     background: #b9ad29;
 }
 
-button:active {
+.form-buttons button:active,
+.button-row button:active {
     transform: scale(0.98);
 }
 
-.form-buttons {
+.form-buttons, .button-row {
     display: flex;
     gap: 15px;
     margin-top: 20px;
 }
 
-.form-buttons button {
-    width: auto;
+.form-buttons button, .button-row button {
     flex: 1;
+    width: auto;
 }
 
 .signature-container {
     max-width: 600px;
     margin: 10px auto 5px;
     background: rgba(255, 255, 255, 0.75);
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     border: 5px solid #75da23;
@@ -184,9 +192,7 @@ button:active {
     padding: 0 10px;
 }
 
-.fixed-part {
-    position: relative;
-}
+.fixed-part {}
 
 .signatures {
     display: flex;
@@ -229,66 +235,54 @@ button:active {
 .decision-box:last-child {
     border-right: none;
 }
-.hidden {
-    display: none !important;
+
+#maDiv {
+    margin-top: 10px;
 }
 
-@media (max-width: 600px) {
-    .form-buttons {
-        flex-direction: column;
-    }
+.code-block {
+    margin-bottom: 20px;
 }
-    .signature-container {
-        padding: 20px;
-    }
 
-    #maDiv {
-        margin-top: 10px;
-    }
+.code-block h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-weight: 700;
+}
 
+.code-block p {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #555;
+}
 
-    .code-block {
-        margin-bottom: 20px;
-    }
+.code-block label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 
-    .code-block h4 {
-        font-size: 14px;
-        margin-bottom: 10px;
-        color: #2c3e50;
-        font-weight: 700;
-    }
+.code-block label:hover {
+    background: #f1f5f9;
+}
 
-    .code-block p {
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: #555;
-    }
+.code-block input[type="radio"] {
+    accent-color: #3498db;
+    cursor: pointer;
+}
 
-    .code-block label {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
+#maDiv hr {
+    border: none;
+    height: 2px;
+    background: #75da23;
+    margin: 16px 0;
+}
 
-    .code-block label:hover {
-        background: #f1f5f9;
-    }
-
-    .code-block input[type="radio"] {
-        accent-color: #3498db;
-        cursor: pointer;
-    }
-
-    #maDiv hr {
-        border: none;
-        height: 2px;
-        background: #75da23;
-        margin: 16px;
-    }
 input:disabled,
 select:disabled,
 textarea:disabled {
@@ -300,6 +294,7 @@ textarea:disabled {
 input[type="radio"]:disabled {
     accent-color: #3498db;
 }
+
 .contact-row {
     display: flex;
     justify-content: space-between;
@@ -317,30 +312,14 @@ input[type="radio"]:disabled {
 .right-column {
     max-width: 300px;
 }
-.button-row {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
+
+.hidden {
+    display: none;
 }
 
-.button-row button {
-    flex: 1;
-    width: auto;
-    padding: 12px;
-    background: #75da23;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.1s;
-}
-
-.button-row button:hover {
-    background: #b9ad29;
-}
-
-.button-row button:active {
-    transform: scale(0.98);
+@media (max-width: 600px) {
+    .form-buttons,
+    .button-row {
+        flex-direction: column;
+    }
 }
