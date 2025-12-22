@@ -66,9 +66,9 @@ label {
 }
 
 #periode {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    display: none;
 }
 
 #periode label {
@@ -128,7 +128,7 @@ button {
 
 .form-buttons button:hover,
 .button-row button:hover {
-    background: #b9ad29;
+    background: #bc5623;
 }
 
 .form-buttons button:active,
@@ -272,7 +272,7 @@ button {
 }
 
 .code-block input[type="radio"] {
-    accent-color: #3498db;
+    accent-color: #75da23;
     cursor: pointer;
 }
 
@@ -315,6 +315,25 @@ input[type="radio"]:disabled {
 
 .hidden {
     display: none;
+}
+
+label input[type="time"] {
+    width: 40%;
+    padding: 8px 10px;
+    margin-right: 4%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+label input[type="time"]:last-child {
+    margin-right: 0;
+}
+
+label input[type="time"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.5);
 }
 
 @media (max-width: 600px) {

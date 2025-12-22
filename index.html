@@ -18,19 +18,19 @@
         <fieldset>
             <div class="contact-row">
                 <div class="left-column">
-                    <label>Nom
-                        <input type="text" name="nom" required>
+                    <label for="nom">Nom
+                        <input type="text" name="nom" id="nom" required>
                     </label>
-                    <label>Email
-                        <input type="email" name="email" required>
+                    <label for="email">Email
+                        <input type="email" name="email" id="email" required>
                     </label>
                 </div>
 
                 <div class="right-column">
-                    <label>Prénom
-                        <input type="text" name="prenom" required>
+                    <label for="prenom">Prénom
+                        <input type="text" name="prenom" id="prenom" required>
                     </label>
-                    <label>Telephone
+                    <label for="telephone">Telephone
                         <input type="tel" name="tel" id="telephone"
                                pattern="[0-9]{10}"
                                title="10 chiffres requis" required>
@@ -38,9 +38,9 @@
                 </div>
             </div>
             <div>
-                <label>
+                <label for="formation_suivi">
                     Formation :
-                    <select name="formation_suivie" required>
+                    <select name="formation_suivie" id="formation_suivi" required>
                         <option value="CDA">Concepteur Développeur d'Application</option>
                         <option value="DWWM">Développeur Web et Web Mobile</option>
                         <option value="AIS">Administrateur d'Infrastructures Sécurisées</option>
@@ -62,23 +62,25 @@
             </label>
 
             <div id="jour">
-                <label>Date
-                <input type="date" name="date_jour" required></label>
-                <label>Heure
-                <input type="time" name="hstart_jour" required>
-                <input type="time" name="hend_jour" required>
+                <label for="date_jour">Date
+                <input type="date" name="date_jour" id="date_jour" required></label>
+                <label for="hstart_jour">Heure début
+                    <input type="time" name="hstart_jour" id="hstart_jour" required>
+                </label>
+                <label for="hend_jour">Heure fin
+                    <input type="time" name="hend_jour" id="hend_jour" required>
                 </label>
             </div>
 
             <div id="periode" class="hidden">
-                <label>Du
-                    <input type="date" name="date_debut" required>
+                <label for="date_debut">Du
+                    <input type="date" name="date_debut" id="date_debut" required>
                 </label>
-                <label>Au
-                    <input type="date" name="date_fin" required>
+                <label for="date_fin">Au
+                    <input type="date" name="date_fin" id="date_fin" required>
                 </label>
             </div>
-<hr>
+            <hr>
             <div id="maDiv"></div>
 
             <div class="form-buttons">
