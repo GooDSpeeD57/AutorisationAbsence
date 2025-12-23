@@ -63,7 +63,7 @@ label {
     color: #444;
 }
 
-#jour {
+#jour:not(.hidden) {
     display: grid;
     gap: 15px;
     grid-template-columns: 1fr 1fr;
@@ -78,7 +78,7 @@ label {
     flex-direction: column;
 }
 
-#periode {
+#periode:not(.hidden) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
