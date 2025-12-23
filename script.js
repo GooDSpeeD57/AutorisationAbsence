@@ -13,25 +13,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const typeDateLabel = document.getElementById('typeDateLabel');
     const ABSENCE_EMAIL = 'absence@afpa.fr';
 
-    function toggleVisibility(element, show, displayType = "block") {
-        element.style.display = show ? displayType : "none";
+    // Gestion propre de la visibilité
+    function showElement(element) {
+        element.classList.remove("hidden");
     }
+
+    function hideElement(element) {
+        element.classList.add("hidden");
+    }
+
+    // Affichage initial au chargement
+    showElement(jour);
+    hideElement(periode);
 
     function updateDateBlocks() {
         const selected = document.querySelector('input[name="type_date"]:checked');
         if (!selected) return;
 
         if (selected.value === 'jour') {
-            toggleVisibility(jour, true, "block");
-            toggleVisibility(periode, false);
+            showElement(jour);
+            hideElement(periode);
             form.date_jour.required = true;
             form.hstart_jour.required = true;
             form.hend_jour.required = true;
             form.date_debut.required = false;
             form.date_fin.required = false;
         } else {
-            toggleVisibility(jour, false);
-            toggleVisibility(periode, true, "grid");
+            hideElement(jour);
+            showElement(periode);
             form.date_jour.required = false;
             form.hstart_jour.required = false;
             form.hend_jour.required = false;
@@ -43,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDateBlocks();
     radios.forEach(radio => radio.addEventListener('change', updateDateBlocks));
 
+    // --- Le reste de ton code existant reste inchangé ---
     fetch('test.json')
         .then(response => {
             if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
@@ -98,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
             maDiv.appendChild(errorMsg);
         });
 
-    toggleVisibility(signatureContainer, false);
+    hideElement(signatureContainer);
 
     function lockForm(form) {
         form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
@@ -112,25 +122,31 @@ document.addEventListener("DOMContentLoaded", () => {
         blocks.forEach(block => {
             const inputs = block.querySelectorAll('input[name="motif_absence"]');
             if (!Array.from(inputs).includes(selected)) {
-                toggleVisibility(block, false);
+                hideElement(block);
             } else {
                 inputs.forEach(input => {
-                    if (input !== selected) toggleVisibility(input.closest('label'), false);
+                    if (input !== selected) hideElement(input.closest('label'));
                 });
             }
         });
 
-        document.querySelectorAll('#maDiv hr').forEach(hr => toggleVisibility(hr, false));
+        document.querySelectorAll('#maDiv hr').forEach(hr => hideElement(hr));
     }
 
     function keepOnlySelectedDateType() {
         const selected = document.querySelector('input[name="type_date"]:checked');
         if (!selected) return;
 
-        radios.forEach(radio => toggleVisibility(radio.closest('label'), false));
-        toggleVisibility(typeDateLabel, false);
-        toggleVisibility(jour, selected.value === 'jour');
-        toggleVisibility(periode, selected.value === 'periode');
+        radios.forEach(radio => hideElement(radio.closest('label')));
+        hideElement(typeDateLabel);
+
+        if (selected.value === 'jour') {
+            showElement(jour);
+            hideElement(periode);
+        } else {
+            hideElement(jour);
+            showElement(periode);
+        }
     }
 
     form.addEventListener('submit', e => {
@@ -164,11 +180,11 @@ document.addEventListener("DOMContentLoaded", () => {
         keepOnlySelectedCodeBlock();
         keepOnlySelectedDateType();
 
-        toggleVisibility(btnEnvoyer, false);
-        toggleVisibility(btnEffacer, false);
-        toggleVisibility(signatureContainer, true);
-        toggleVisibility(btnPrint, true);
-        toggleVisibility(btnMail, true);
+        hideElement(btnEnvoyer);
+        hideElement(btnEffacer);
+        showElement(signatureContainer);
+        showElement(btnPrint);
+        showElement(btnMail);
     });
 
     btnPrint.addEventListener('click', () => window.print());
@@ -197,4 +213,7 @@ Motif : ${motif ? motif.value : ''}
         window.location.href = `mailto:${ABSENCE_EMAIL}?subject=Autorisation d'absence&body=${encodeURIComponent(message)}`;
     });
 
+    form.addEventListener('reset', () => {
+        setTimeout(updateDateBlocks);
+    });
 });

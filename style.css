@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,7 +22,8 @@ header {
     padding: 20px;
     border-radius: 10px;
     border: 5px solid rgba(117, 218, 35, 0.75);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
 }
 
 header h1 {
@@ -62,7 +64,18 @@ label {
 }
 
 #jour {
-    display: block;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+}
+
+#jour label:first-of-type {
+    grid-column: 1 / -1;
+}
+
+#jour label {
+    display: flex;
+    flex-direction: column;
 }
 
 #periode {
@@ -92,12 +105,17 @@ select {
 input:focus,
 select:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    border-color: #3ac626;
 }
+
+/*input:focus,*/
+/*select:focus {*/
+/*    box-shadow: 0 5px 5px 5px rgba(0, 0, 0,0.75);*/
+/*}*/
 
 input[type="radio"] {
     margin-right: 6px;
+    accent-color: #3ac626;
 }
 
 p {
@@ -128,7 +146,7 @@ button {
 
 .form-buttons button:hover,
 .button-row button:hover {
-    background: #bc5623;
+    background: #d5c91d;
 }
 
 .form-buttons button:active,
@@ -153,8 +171,9 @@ button {
     background: rgba(255, 255, 255, 0.75);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     border: 5px solid #75da23;
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
 }
 
 .signature-header {
@@ -292,7 +311,7 @@ textarea:disabled {
 }
 
 input[type="radio"]:disabled {
-    accent-color: #3498db;
+    accent-color: #3ac626;
 }
 
 .contact-row {
@@ -318,7 +337,7 @@ input[type="radio"]:disabled {
 }
 
 label input[type="time"] {
-    width: 40%;
+    width: 30%;
     padding: 8px 10px;
     margin-right: 4%;
     border: 1px solid #ccc;
@@ -332,7 +351,7 @@ label input[type="time"]:last-child {
 }
 
 label input[type="time"]:focus {
-    border-color: #3498db;
+    border-color: #75da23;
     box-shadow: 0 0 3px rgba(52, 152, 219, 0.5);
 }
 
